@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gửi em 💗 | 20/10</title>
+
+<style>
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+:root {
+
+    --pink: #f17da2;
+
+    --rose: #c94f79;
+
+    --light-pink: #ffe4ec;
+
+    --text: #85566a;
+
+}
+
+body {
+
+    min-height: 100vh;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    color: var(--text);
+
+    background:
+
+        radial-gradient(circle at 10% 10%, #ffe0eb, transparent 35%),
+
+        radial-gradient(circle at 90% 90%, #ffd8e5, transparent 35%),
+
+        linear-gradient(135deg, #fff8f5, #ffeaf1);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px 14px;
+
+    overflow-x: hidden;
+
+}
+
+.container {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    border: 1px solid white;
+
+    border-radius: 28px;
+
+    box-shadow: 0 20px 60px rgba(180, 70, 110, 0.13);
+
+    z-index: 1;
+
+}
+
+.subtitle {
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    font-size: 12px;
+
+    color: #bd7290;
+
+}
+
+h1 {
+
+    font-family: Georgia, serif;
+
+    font-weight: 500;
+
+    font-size: clamp(36px, 8vw, 60px);
+
+    line-height: 1.2;
+
+    margin: 18px 0;
+
+    color: #b74370;
+
+}
+
+h1 span {
+
+    font-style: italic;
+
+    color: var(--pink);
+
+}
+
+.description {
+
+    line-height: 1.9;
+
+    margin: 0 auto 25px;
+
+    max-width: 460px;
+
+}
+
+/* PHONG BÌ */
+
+.envelope-area {
+
+    padding: 45px 0 25px;
+
+}
+
+.envelope {
+
+    position: relative;
+
+    width: min(260px, 75vw);
+
+    height: 165px;
+
+    margin: 0 auto;
+
+    background: #f49ab6;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    box-shadow: 0 12px 25px rgba(190, 80, 120, 0.15);
+
+    transition: transform 0.3s;
+
+}
+
+.envelope:hover {
+
+    transform: translateY(-5px);
+
+}
+
+.letter-peek {
+
+    position: absolute;
+
+    left: 10%;
+
+    top: 5%;
+
+    width: 80%;
+
+    height: 85%;
+
+    background: #fffdfb;
+
+    border-radius: 5px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 35px;
+
+    transition: transform 0.7s;
+
+}
+
+.envelope::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #ffc5d6;
+
+    clip-path: polygon(0 0, 100% 0, 50% 60%);
+
+    transform-origin: top;
+
+    transition: transform 0.6s;
+
+    z-index: 3;
+
+}
+
+.envelope.open::before {
+
+    transform: rotateX(180deg);
+
+}
+
+.envelope.open .letter-peek {
+
+    transform: translateY(-75px);
+
+}
+
+.envelope::after {
+
+    content: "♥";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 55%;
+
+    transform: translate(-50%, -50%);
+
+    color: white;
+
+    background: var(--rose);
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 22px;
+
+    z-index: 4;
+
+    transition: opacity 0.3s;
+
+}
+
+.envelope.open::after {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+}
+
+.hint {
+
+    font-size: 13px;
+
+    color: #b0788b;
+
+    margin-top: 5px;
+
+}
+
+/* LÁ THƯ */
+
+.letter {
+
+    display: none;
+
+    text-align: left;
+
+    margin-top: 25px;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background: #fffdfb;
+
+    border: 1px solid #ffe0e9;
+
+    line-height: 1.9;
+
+}
+
+.letter.show {
+
+    display: block;
+
+    animation: appear 0.7s ease;
+
+}
+
+.letter h2 {
+
+    font-family: Georgia, serif;
+
+    text-align: center;
+
+    font-size: 27px;
+
+    color: var(--rose);
+
+    margin-bottom: 18px;
+
+}
+
+.letter p {
+
+    margin-bottom: 15px;
+
+}
+
+.signature {
+
+    text-align: right;
+
+    margin-top: 20px;
+
+    color: var(--rose);
+
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+}
+
+/* NÚT BẤM */
+
+button {
+
+    border: none;
+
+    padding: 13px 21px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    margin: 5px;
+
+    transition: transform 0.25s, box-shadow 0.25s;
+
+}
+
+button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(201, 79, 121, 0.18);
+
+}
+
+.primary {
+
+    background: var(--rose);
+
+    color: white;
+
+}
+
+.secondary {
+
+    background: #ffe2eb;
+
+    color: #a83d65;
+
+}
+
+/* ALBUM 10 ẢNH */
+
+.album {
+
+    display: none;
+
+    margin-top: 30px;
+
+    padding: 22px;
+
+    background: #fff9fb;
+
+    border: 1px solid #ffe0e9;
+
+    border-radius: 22px;
+
+}
+
+.album.show {
+
+    display: block;
+
+    animation: appear 0.7s ease;
+
+}
+
+.album h2 {
+
+    font-family: Georgia, serif;
+
+    color: var(--rose);
+
+    font-size: clamp(22px, 5vw, 30px);
+
+    margin-bottom: 12px;
+
+}
+
+.album-desc {
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-bottom: 22px;
+
+}
+
+.photo-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 13px;
+
+}
+
+.photo {
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    background: #ffe5ed;
+
+    box-shadow: 0 5px 15px rgba(180, 70, 110, 0.09);
+
+    transition: transform 0.3s;
+
+}
+
+.photo:hover {
+
+    transform: translateY(-4px);
+
+}
+
+.photo img {
+
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 3 / 4;
+
+    object-fit: cover;
+
+    cursor: pointer;
+
+    background: #ffe0eb;
+
+}
+
+.photo span {
+
+    display: block;
+
+    padding: 11px 5px;
+
+    font-size: 12px;
+
+    color: #a83d65;
+
+}
+
+.album-end {
+
+    margin: 22px 0 15px;
+
+    line-height: 1.8;
+
+    font-style: italic;
+
+    color: #b95b7b;
+
+}
+
+/* XEM ẢNH LỚN */
+
+.lightbox {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    padding: 20px;
+
+    background: rgba(45, 20, 32, 0.9);
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+}
+
+.lightbox.show {
+
+    display: flex;
+
+    animation: appear 0.25s ease;
+
+}
+
+.lightbox img {
+
+    display: block;
+
+    max-width: 95%;
+
+    max-height: 78vh;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    box-shadow: 0 10px 40px #0004;
+
+}
+
+.lightbox p {
+
+    color: white;
+
+    margin-top: 15px;
+
+}
+
+.close-lightbox {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    background: white;
+
+    color: #a83d65;
+
+    font-size: 22px;
+
+    width: 45px;
+
+    height: 45px;
+
+    padding: 0;
+
+}
+
+/* HIỆU ỨNG */
+
+.heart {
+
+    position: fixed;
+
+    bottom: -40px;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    animation: fly 4s linear forwards;
+
+}
+
+@keyframes fly {
+
+    0% {
+
+        transform: translateY(0) rotate(0deg) scale(0.7);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform: translateY(-110vh) rotate(360deg) scale(1.4);
+
+        opacity: 0;
+
+    }
+
+}
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+.footer {
+
+    margin-top: 25px;
+
+    color: #b0788b;
+
+    font-size: 12px;
+
+}
+
+@media (max-width: 480px) {
+
+    .container {
+
+        padding: 22px 15px;
+
+        border-radius: 22px;
+
+    }
+
+    .letter {
+
+        padding: 19px;
+
+    }
+
+    .album {
+
+        padding: 13px;
+
+    }
+
+    .photo-grid {
+
+        gap: 9px;
+
+    }
+
+    .photo span {
+
+        font-size: 11px;
+
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *, *::before, *::after {
+
+        animation-duration: 0.01ms !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <div class="subtitle">20 tháng 10 · Ngày của em</div>
+
+    <h1>Gửi <span>em,</span><br>người đặc biệt 💗</h1>
+
+    <p class="description">
+
+        Có một món quà nhỏ anh muốn gửi đến em.
+
+        Không cần phải thật lớn lao, chỉ mong nó
+
+        khiến em mỉm cười một chút hôm nay.
+
+    </p>
+
+    <!-- PHONG BÌ -->
+
+    <div class="envelope-area">
+
+        <div
+
+            class="envelope"
+
+            id="envelope"
+
+            role="button"
+
+            tabindex="0"
+
+            aria-label="Mở lá thư"
+
+            onclick="openLetter()"
+
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLetter();}"
+
+        >
+
+            <div class="letter-peek">♡</div>
+
+        </div>
+
+        <p class="hint" id="hint">
+
+            Chạm vào chiếc phong bì để mở thư nhé 💌
+
+        </p>
+
+    </div>
+
+    <!-- NỘI DUNG LÁ THƯ -->
+
+    <section class="letter" id="letter">
+
+        <h2>Gửi cô gái anh thương 🌷</h2>
+
+        <p>
+
+            Chúc em ngày 20/10 thật vui vẻ, luôn xinh đẹp,
+
+            bình an và gặp thật nhiều điều dịu dàng
+
+            trong cuộc sống.
+
+        </p>
+
+        <p>
+
+            Anh không biết mình có thể làm em vui mỗi ngày
+
+            hay không, nhưng anh mong những lúc ở bên anh,
+
+            em sẽ luôn cảm thấy thoải mái, được là chính mình
+
+            và có thêm thật nhiều lý do để cười. Những lúc em vui hay em buồn đều có anh ở đây nghe những câu chuyện đó. Em chỉ cần nói hôm nay em mệt thì anh sẽ đến để cho em mượn bờ vai để tựa vào và ôm em thật chặt.
+
+        </p>
+
+        <p>
+
+            Cảm ơn em vì đã xuất hiện trong cuộc đời của anh, vì những buổi đi chơi,
+
+            những câu chuyện và cả những khoảnh khắc nhỏ bé
+
+            mà anh vẫn thấy rất đáng yêu khi nhớ lại.
+
+        </p>
+
+        <p>
+
+            Chúc cô gái của anh luôn được yêu thương
+
+            không chỉ hôm nay, mà cả những ngày bình thường
+
+            sau này nữa. Mong rằng anh sẽ có thêm nhiều cơ hội
+
+            để quan tâm em, làm em cười và cùng em tạo nên
+
+            những kỷ niệm thật đẹp. Và may mắn hơn nữa sẽ được đồng hành với em trên con đường phía trước.
+
+        </p>
+
+        <div class="signature">
+            <br>
+            <p></p>Hãy tin ở anh nhé! </p>
+
+            <small>— Thành Tô —</small>
+
+        </div>
+
+    </section>
+
+    <!-- NÚT VÀ ALBUM -->
+
+    <div id="actions" style="margin-top: 24px;">
+
+        <button class="primary" onclick="showAlbum()">
+
+            Em thử nhấn vào đi 💗
+
+        </button>
+
+        <button class="secondary" onclick="reopenLetter()">
+
+            Thư
+
+        </button>
+
+    </div>
+
+    <!-- GIAO DIỆN 10 ẢNH -->
+
+    <section class="album" id="album">
+
+        <h2>Một chút dễ thương dành cho em 💗</h2>
+        <audio id="bgMusic" src="../music.mp3" loop preload="auto"></audio>
+        
+
+        <p class="album-desc">
+
+            Món quà nhỏ này dành riêng cho em.
+
+            Hy vọng em sẽ thích nhé! 🌷
+
+        </p>
+
+        <div class="photo-grid">
+
+            <div class="photo">
+
+                <img src="/images/anh1.jpg" alt="Ảnh kỷ niệm 1" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh1.jpg'; this.style.objectFit='contain';">
+
+                <span>Luôn tự tin 💗</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh2.jpg" alt="Ảnh kỷ niệm 2" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh2.jpg'; this.style.objectFit='contain';">
+
+                <span>Rạng rỡ như những đóa hoa 🌷</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh3.jpg" alt="Ảnh kỷ niệm 3" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh3.jpg'; this.style.objectFit='contain';">
+
+                <span>Luôn mỉm cười với cuộc sống</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh4.jpg" alt="Ảnh kỷ niệm 4" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh4.jpg'; this.style.objectFit='contain';">
+
+                <span>Má núm đẹp nè 💕</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh5.jpg" alt="Ảnh kỷ niệm 5" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh5.jpg'; this.style.objectFit='contain';">
+
+                <span>Một ngày thật vui 🌸</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh6.jpg" alt="Ảnh kỷ niệm 6" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh6.jpg'; this.style.objectFit='contain';">
+
+                <span>Điều nhỏ bé, niềm vui lớn 💖</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh7.jpg" alt="Ảnh kỷ niệm 7" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh7.jpg'; this.style.objectFit='contain';">
+
+                <span>Chụp thêm một tấm nhé 🫶</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh8.jpg" alt="Ảnh kỷ niệm 8" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh8.jpg'; this.style.objectFit='contain';">
+
+                <span>Những điều dịu dàng 🌹</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh9.jpg" alt="Ảnh kỷ niệm 9" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh9.jpg'; this.style.objectFit='contain';">
+
+                <span>Một chút ngọt ngào 💓</span>
+
+            </div>
+
+            <div class="photo">
+
+                <img src="/images/anh10.jpg" alt="Ảnh kỷ niệm 10" loading="lazy" onclick="viewPhoto(this)" onerror="this.onerror=null; this.alt='Không tải được ảnh: anh10.jpg'; this.style.objectFit='contain';">
+
+                <span>Và còn nhiều điều nữa 💝</span>
+
+            </div>
+
+        </div>
+
+        <p class="album-end">
+
+            Mong rằng chúng mình sẽ có thêm thật nhiều
+
+            khoảnh khắc đẹp trong thời gian tới. 💗
+
+        </p>
+
+        <button class="secondary" onclick="backToLetter()">
+
+            ← Quay lại lá thư
+
+        </button>
+
+    </section>
+
+    <div class="footer">
+
+        Made with Thành Tô ♡ · 20/10
+
+    </div>
+
+</main>
+
+<!-- XEM ẢNH TO -->
+
+<div
+
+    class="lightbox"
+
+    id="lightbox"
+
+    role="dialog"
+
+    aria-modal="true"
+
+    aria-label="Xem ảnh lớn"
+
+    onclick="closePhoto(event)"
+
+>
+
+    <button
+
+        class="close-lightbox"
+
+        aria-label="Đóng ảnh"
+
+        onclick="hidePhoto()"
+
+    >×</button>
+
+    <img id="largePhoto" src="" alt="Ảnh đang xem">
+
+    <p>Chạm ra ngoài ảnh để đóng 💗</p>
+
+</div>
+
+
+<!-- NHẠC NỀN: đặt file nhạc tên music.mp3 cùng thư mục với 10.html -->
+<audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+
+<script>
+
+/* MỞ LÁ THƯ */
+
+function openLetter() {
+
+    const envelope = document.getElementById("envelope");
+
+    const letter = document.getElementById("letter");
+
+    const hint = document.getElementById("hint");
+
+    envelope.classList.add("open");
+
+    letter.classList.add("show");
+
+    hint.textContent = "Lá thư dành riêng cho em 💌";
+
+    createHearts(12);
+
+    setTimeout(() => {
+
+        letter.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "nearest"
+
+        });
+
+    }, 200);
+
+}
+
+/* MỞ ALBUM 10 ẢNH */
+
+async function showAlbum() {
+
+    const album = document.getElementById("album");
+    const music = document.getElementById("bgMusic");
+
+    album.classList.add("show");
+    createHearts(25);
+
+    // Nhạc bắt đầu phát sau khi người xem nhấn nút.
+    if (music) {
+        try {
+            music.volume = 0.55;
+            await music.play();
+        } catch (error) {
+            console.warn("Chưa phát được nhạc. Hãy kiểm tra file music.mp3.", error);
+        }
+    }
+
+    setTimeout(() => {
+        album.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }, 100);
+}
+
+/* QUAY LẠI LÁ THƯ */
+
+function backToLetter() {
+
+    const album = document.getElementById("album");
+
+    const letter = document.getElementById("letter");
+
+    album.classList.remove("show");
+
+    if (letter.classList.contains("show")) {
+
+        letter.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
+
+    } else {
+
+        document.getElementById("envelope").scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "center"
+
+        });
+
+    }
+
+}
+
+/* ĐỌC LẠI LÁ THƯ */
+
+function reopenLetter() {
+
+    const letter = document.getElementById("letter");
+
+    if (!letter.classList.contains("show")) {
+
+        openLetter();
+
+        return;
+
+    }
+
+    letter.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+    createHearts(8);
+
+}
+
+/* XEM ẢNH LỚN */
+
+function viewPhoto(img) {
+
+    const lightbox = document.getElementById("lightbox");
+
+    const largePhoto = document.getElementById("largePhoto");
+
+    largePhoto.src = img.src;
+
+    largePhoto.alt = img.alt;
+
+    lightbox.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+/* ĐÓNG ẢNH LỚN */
+
+function hidePhoto() {
+
+    document.getElementById("lightbox").classList.remove("show");
+
+    document.body.style.overflow = "";
+
+}
+
+function closePhoto(event) {
+
+    if (event.target.id === "lightbox") {
+
+        hidePhoto();
+
+    }
+
+}
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+
+        hidePhoto();
+
+    }
+
+});
+
+/* TẠO TRÁI TIM BAY */
+
+function createHearts(amount) {
+
+    const symbols = ["💗", "💕", "💖", "❤️", "🌸"];
+
+    for (let i = 0; i < amount; i++) {
+
+        const heart = document.createElement("span");
+
+        heart.className = "heart";
+
+        heart.textContent =
+
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.fontSize = (16 + Math.random() * 22) + "px";
+
+        heart.style.animationDuration = (2.5 + Math.random() * 2) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+
+    }
+
+}
+
+setInterval(() => {
+
+    if (Math.random() > 0.55) {
+
+        createHearts(1);
+
+    }
+
+}, 1800);
+
+</script>
+
+</body>
+
+</html>
