@@ -702,6 +702,67 @@ button:hover {
 
 }
 
+
+/* HỘP NHẬP MẬT KHẨU */
+.password-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(75, 25, 48, 0.62);
+}
+.password-overlay.show {
+    display: flex;
+    animation: appear 0.25s ease;
+}
+.password-card {
+    width: min(100%, 360px);
+    padding: 28px 22px;
+    border: 1px solid #ffe0e9;
+    border-radius: 24px;
+    background: #fff8fb;
+    box-shadow: 0 18px 55px rgba(90, 25, 55, 0.25);
+    text-align: center;
+}
+.password-card .password-icon {
+    margin-bottom: 8px;
+    font-size: 42px;
+}
+.password-card h2 {
+    margin-bottom: 10px;
+    color: var(--rose);
+    font-family: Georgia, serif;
+    font-weight: 500;
+}
+.password-card p {
+    margin-bottom: 14px;
+    line-height: 1.7;
+}
+.password-card input {
+    width: 100%;
+    margin: 4px 0 8px;
+    padding: 13px 14px;
+    border: 1px solid #efbfd0;
+    border-radius: 12px;
+    outline: none;
+    background: white;
+    color: var(--text);
+    font-size: 18px;
+    text-align: center;
+}
+.password-card input:focus {
+    border-color: var(--rose);
+    box-shadow: 0 0 0 3px rgba(201, 79, 121, 0.12);
+}
+.password-error {
+    min-height: 22px;
+    color: #c42e62;
+    font-size: 13px;
+}
+
 </style>
 
 </head>
@@ -740,9 +801,9 @@ button:hover {
 
             aria-label="Mở lá thư"
 
-            onclick="openLetter()"
+            onclick="requestPassword('letter')"
 
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLetter();}"
+            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();requestPassword('letter');}"
 
         >
 
@@ -824,13 +885,13 @@ button:hover {
 
     <div id="actions" style="margin-top: 24px;">
 
-        <button class="primary" onclick="showAlbum()">
+        <button class="primary" onclick="requestPassword('album')">
 
             Em thử nhấn vào đi 💗
 
         </button>
 
-        <button class="secondary" onclick="reopenLetter()">
+        <button class="secondary" onclick="requestPassword('letter')">
 
             Thư
 
@@ -997,10 +1058,76 @@ button:hover {
 </div>
 
 
+
+<!-- HỘP NHẬP MẬT KHẨU -->
+<div class="password-overlay" id="passwordOverlay" role="dialog" aria-modal="true" aria-labelledby="passwordTitle">
+    <div class="password-card">
+        <div class="password-icon">💌</div>
+        <h2 id="passwordTitle">Một bí mật dành cho em</h2>
+        <p>Nhập mật khẩu anh đã chuẩn bị nhé 💗</p>
+        <form id="passwordForm">
+            <input id="passwordInput" type="password" inputmode="numeric" autocomplete="off" placeholder="Mật khẩu..." aria-label="Mật khẩu" required>
+            <p class="password-error" id="passwordError" aria-live="polite"></p>
+            <button class="primary" type="submit">Mở quà 💗</button>
+            <button class="secondary" type="button" onclick="closePassword()">Để sau nhé</button>
+        </form>
+    </div>
+</div>
+
 <!-- NHẠC NỀN: đặt file nhạc tên music.mp3 cùng thư mục với 10.html -->
 <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
 
 <script>
+
+/* KIỂM TRA MẬT KHẨU TRƯỚC KHI MỞ THƯ HOẶC ALBUM */
+let passwordNextAction = null;
+
+function requestPassword(action) {
+    passwordNextAction = action;
+    const overlay = document.getElementById("passwordOverlay");
+    const input = document.getElementById("passwordInput");
+    const error = document.getElementById("passwordError");
+
+    input.value = "";
+    error.textContent = "";
+    overlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => input.focus(), 50);
+}
+
+function closePassword() {
+    document.getElementById("passwordOverlay").classList.remove("show");
+    document.body.style.overflow = "";
+    passwordNextAction = null;
+}
+
+document.getElementById("passwordForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const input = document.getElementById("passwordInput");
+    const error = document.getElementById("passwordError");
+
+    if (input.value !== "2704") {
+        error.textContent = "Mật khẩu chưa đúng, em thử lại nhé 💗";
+        input.select();
+        return;
+    }
+
+    const action = passwordNextAction;
+    closePassword();
+
+    if (action === "album") {
+        showAlbum();
+    } else if (action === "letter") {
+        openLetter();
+    }
+});
+
+document.getElementById("passwordOverlay").addEventListener("click", function(event) {
+    if (event.target === this) closePassword();
+});
+
+
 
 /* MỞ LÁ THƯ */
 
